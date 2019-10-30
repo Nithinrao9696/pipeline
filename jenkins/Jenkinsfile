@@ -4,7 +4,9 @@ pipeline {
          maven 'Maven' 
     }
     
-    stage('Sonarqube') {
+  
+    stages {
+          stages('Sonarqube') {
     environment {
         scannerHome = tool 'SonarQubeScanner'
     }
@@ -14,7 +16,6 @@ pipeline {
         }
     }
 }
-    stages {
         stage('Build') {
             steps {
                 //sh 'mvn install'
