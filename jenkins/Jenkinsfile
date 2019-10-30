@@ -6,17 +6,17 @@ pipeline {
     
   
     stages {
-          stage('Sonarqube') {
-    script {
+    stage('SonarQube analysis') {
+      steps {
+        script {
           // requires SonarQube Scanner 2.8+
           scannerHome = tool 'SonarQube Scanner 2.8'
         }
-    steps {
-        withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
+        withSonarQubeEnv('SonarQube Scanner') {
+          sh "${scannerHome}/bin/sonar-scanner"
         }
+      }
     }
-}
         stage('Build') {
             steps {
                 //sh 'mvn install'
