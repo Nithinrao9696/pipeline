@@ -1,3 +1,6 @@
+def SONAR_HOST_URL = " http://localhost:9000"
+def SONAR_AUTH_TOKEN = "d7e43ee9b86781991ab0f9e68ddde7973b9d18f0"
+
 pipeline {
     agent any
       tools {
@@ -7,16 +10,37 @@ pipeline {
   
     stages {
     stage('SonarQube analysis') {
-      steps {
-        script {
-          // requires SonarQube Scanner 2.8+
-         def scannerHome = tool 'SonarQube Scanner 2.8';
-        }
-        withSonarQubeEnv('mysonar') {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
-      }
-    }
+
+
+steps {
+
+// requires SonarQube Scanner 2.8+
+
+script {
+
+try {
+
+withSonarQubeEnv('mysonar') {
+
+bat """
+
+${env.SONAR_HOME}\\bin\\sonar-scanner -X -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.projectKey=mykey -Dsonar.projectBaseDir=${workspace} -D sonar.sources=. -Dsonar.login="${SONAR_AUTH_TOKEN}" -Dsonar.projectName=SpringBootMavenExample -D sonar.projectVersion='1'
+
+"""
+
+}
+
+} catch (err) {
+
+println("SONARQUBE STEP FAILED, BUT THIS IS STILL IN DEVELOPMENT")
+
+}
+
+}
+
+}
+
+}
         stage('Build') {
             steps {
                 //sh 'mvn install'
