@@ -9,6 +9,13 @@ pipeline {
     
   
     stages {
+        
+        
+           stage('Checkout') {
+        steps {
+            git branch: 'master',  url: 'ssh://git@server/project.git'
+        }
+    }
     stage('SonarQube analysis') {
 
 
