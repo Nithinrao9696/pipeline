@@ -65,8 +65,11 @@ println("SONARQUBE STEP FAILED, BUT THIS IS STILL IN DEVELOPMENT")
             }
         }
         stage('Deliver') {
+             when {
+                branch 'dev'  
+            }
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                println("Testing")
             }
         }
     }
