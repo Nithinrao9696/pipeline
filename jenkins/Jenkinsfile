@@ -13,7 +13,8 @@ pipeline {
         
            stage('Checkout') {
         steps {
-            git branch: 'master',  url: 'ssh://git@server/project.git'
+            //git branch: 'master',  url: 'ssh://git@server/project.git'
+            //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'subdirectory1']], submoduleCfg: [], userRemoteConfigs: [[url: 'repo1.git']]])
         }
     }
     stage('SonarQube analysis') {
