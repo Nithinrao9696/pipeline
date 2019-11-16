@@ -70,7 +70,33 @@ println("SONARQUBE STEP FAILED, BUT THIS IS STILL IN DEVELOPMENT")
                 }
             }
         }
-        stage('Deliver') {
+stage('Deliver in dev') {
+             when {
+                branch '*/feature'  
+            }
+            steps {
+                println("Testing")
+            }
+        }
+
+        stage('Deliver in dev') {
+             when {
+                branch 'dev'  
+            }
+            steps {
+                println("Testing")
+            }
+        }
+        stage('Deliver in stg') {
+             when {
+                branch 'dev'  
+            }
+            steps {
+                println("Testing")
+            }
+
+        }
+        stage('Deliver in prod') {
              when {
                 branch 'dev'  
             }
