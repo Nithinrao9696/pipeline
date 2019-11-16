@@ -2,10 +2,11 @@ def SONAR_HOST_URL = " http://localhost:9000"
 def SONAR_AUTH_TOKEN = "d7e43ee9b86781991ab0f9e68ddde7973b9d18f0"
 
 pipeline {
-  triggers {
-        cron('H/4 * * * 1-5')
-        pollSCM('0 0 * * 0')
+ 
+    triggers {
+        githubPush()
     }
+
     agent any
       tools {
          maven 'Maven' 
