@@ -72,7 +72,7 @@ println("SONARQUBE STEP FAILED, BUT THIS IS STILL IN DEVELOPMENT")
         }
         stage('Deliver') {
              when {
-                branch 'developmentt'  
+                branch 'dev'  
             }
             steps {
                 println("Testing")
